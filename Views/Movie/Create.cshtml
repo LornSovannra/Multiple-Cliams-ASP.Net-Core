@@ -1,0 +1,46 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div style="max-width: 700px; margin: 20px auto; justify-content: center; align-items: center;">
+        <form method="POST" asp-controller="Movie" asp-action="Create">
+            <div class="card">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h5>Create Movie</h5>
+                  <a asp-controller="Movie" asp-action="Index" class="btn btn-warning">Back</a>
+              </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title"  class="form-control">
+                    <span asp-validation-for="Title" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="Duration" class="form-label"></label>
+                    <input asp-for="Duration"  class="form-control">
+                    <span asp-validation-for="Duration" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="SubTitle" class="form-label"></label>
+                    <select asp-for="SubTitle" asp-items="@((List<SelectListItem>)ViewBag.SubTitles)" class="form-control">
+                        <option>Please select movie subtitle</option>
+                    </select>
+                    <span asp-validation-for="SubTitle" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="ReleaseDate" class="form-label"></label>
+                    <input asp-for="ReleaseDate"  class="form-control">
+                    <span asp-validation-for="ReleaseDate" class="text-danger mt-1"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label asp-for="Language" class="form-label"></label>
+                    <select asp-for="Language" asp-items="@((List<SelectListItem>)ViewBag.Languages)" class="form-control">
+                        <option>Please select language</option>
+                    </select>
+                    <span asp-validation-for="Language" class="text-danger mt-1"></span>
+                  </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>

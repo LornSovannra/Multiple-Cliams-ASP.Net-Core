@@ -1,0 +1,41 @@
+﻿@model Multi_Claims.ViewModels.LoginUserVM
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<div style="margin: 20px auto; justify-content: center; align-items: center;">
+    <form style="max-width: 600px; margin: 20px auto; justify-content: center; align-items: center;" method="POST" asp-controller="Auth" asp-action="Login">
+        <div class="card">
+          <div class="card-header" style="text-align: center;">
+            <span style="font-size: 20; font-weight: bold;">Login</span>
+          </div>
+          <div asp-validation-summary="All"></div>
+          <div class="card-body">
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" asp-for="Email" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger mt-1"></span>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" asp-for="Password" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger mt-1"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input asp-for="RememberMe" />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Remember Me
+                  </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+          </div>
+        </div>
+    </form>
+</div>

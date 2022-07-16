@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div style="margin: 20px auto; justify-content: center; align-items: center;">
+    @if (TempData["SuccessMsg"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMsg"]
+        </div>
+    }
+
+    @if (TempData["ErrorMsg"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMsg"]
+        </div>
+    }
+
+    <div class="card text-nowrap">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h5>List of Movies</h5>
+            <a class="btn btn-success" asp-controller="Movie" asp-action="Create">Create Movie</a>
+        </div>
+        <div style="margin: 10px;">
+            <table class="table table-hover" border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Subtitle</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Language</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var data in Model)
+                    {
+                        <tr>
+                            <td>@data.Title</td>
+                            <td>@data.Duration</td>
+                            <td>@data.SubTitle</td>
+                            <td>@data.ReleaseDate</td>
+                            <td>@data.Language</td>
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Movie" asp-action="Edit" asp-route-id="@data.MovieId">Edit</a>
+                                <a class="btn btn-danger" asp-controller="Movie" asp-action="Delete" asp-route-id="@data.MovieId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

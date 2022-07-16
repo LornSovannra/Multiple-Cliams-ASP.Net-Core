@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "User";
+}
+
+<div style="margin: 20px auto; justify-content: center; align-items: center;">
+    @if (TempData["SuccessMsg"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMsg"]
+        </div>
+    }
+
+    @if (TempData["ErrorMsg"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMsg"]
+        </div>
+    }
+
+    <div class="card text-nowrap">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h5>List of Users</h5>
+        </div>
+        <div style="margin: 10px;">
+            <table class="table table-hover" border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var data in ViewBag.Users)
+                    {
+                        <tr>
+                            <td>@data.Id</td>
+                            <td>@data.UserName</td>
+                            <td>@data.Email</td>
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Administration" asp-action="ManageUser" asp-route-userId="@data.Id">Manage</a>
+                            </td>
+                        </tr>
+                    }
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
